@@ -3,9 +3,9 @@ import React from "react";
 const Navbar =(props)=>{
 
     return (
-            <div style={styles.nav} className>
+            <div style={styles.nav} >
                 <div style={styles.cartIconContainer}>
-                    <img style={styles.cartIcon} src="https://www.flaticon.com/svg/vstatic/svg/34/34568.svg?token=exp=1618602856~hmac=d03a257d1b07e40a0841479913296670" alt="cart_item"/>
+                    <img style={styles.cartIcon} src="https://www.flaticon.com/svg/vstatic/svg/1170/1170678.svg?token=exp=1619181546~hmac=35787d21b74839eaad2f255710ba9438" alt="cart_item"/>
                     <span style={styles.cartCount}>{props.count}</span>
                 </div>
 
