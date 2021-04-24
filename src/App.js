@@ -55,13 +55,14 @@ class App extends React.Component{
 
 
           handleDeleteProduct=(id)=>{
-         const {products}=this.state;
-         const item=products.filter((item)=>item.id!==id);
- 
-         this.setState({
-             products:item,
-            //  loading:false
-         })
+            const decRef=firebase.firestore().collection('products').doc(id);
+            decRef.delete().then(()=>{
+              console.log('deleted')
+            }).catch((err)=>{
+              console.log(err)
+            })
+
+
           }
  
  
@@ -69,14 +70,22 @@ class App extends React.Component{
          const{products}=this.state;
          const index=products.indexOf(product);
  
-         if(products[index].qty>0)
-         products[index].qty-=1;
-         
- 
-         this.setState({
-             products:products,
-             loading:false
+         const decRef=firebase.firestore().collection('products').doc(products[index].id);
+         if(products[index].qty>=1){
+         decRef.update({
+           qty:products[index].qty-1
+         }).then(()=>{
+           console.log('Updated')
+         }).catch((err)=>{
+           console.log(err)
          })
+        }else{
+          decRef.delete().then(()=>{
+            console.log('deleted')
+          }).catch((err)=>{
+            console.log(err)
+          })
+        }
 
         }
 
